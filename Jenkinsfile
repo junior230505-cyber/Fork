@@ -59,8 +59,10 @@ pipeline {
 Commit SHA: ${env.GIT_COMMIT_SHA}
 """
                     sh '''
-                        tar --exclude='.git' -czf app.tar.gz .
-                    '''
+                rm -f app.tar.gz
+                tar -czf /tmp/app.tar.gz --exclude=.git .
+                mv /tmp/app.tar.gz .
+            '''
                 }
             }
         }
